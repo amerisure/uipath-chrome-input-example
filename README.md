@@ -3,6 +3,8 @@
 ## Overview
 This example shows how to prompt for input using Google Chrome instead of Internet Explorer in UiPath.
 
+![Demo](demo.gif)
+
 This is *not* about launching an automation task in Google Chrome. UiPath already has a convenient built-in way to do that using the `Open Browser` activity. This is about showing a form that you need your UiPath workflow to collect user input from.
 
 ## Why Not Use `Custom Input`?

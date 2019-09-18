@@ -1,17 +1,23 @@
 # uipath-chrome-input-example
-This example shows how to prompt a UiPath user for complex input using Google Chrome.
 
-UiPath's out-of-the-box way of prompting for complex input is through the `Custom Input` activity. This activity renders the webpage you specify in an embedded Internet Explorer 7 instance. This is a problem because Internet Explorer 7.
+## Overview
+This example shows how to prompt for input using Google Chrome instead of Internet Explorer in UiPath.
 
-There's no way to change which browser `Custom Input` uses, so this workaround uses a local HTTP listener instead.
+This is *not* about launching an automation task in Google Chrome. UiPath already has a convenient built-in way to do that using the `Open Browser` activity. This is about showing a form that you need your UiPath workflow to collect user input from.
 
-## How It Works
+## Why Not Use `Custom Input`?
+The `Custom Input` activity is UiPath's out-of-the-box way of prompting for complex user input. (You can prompt for simple input, a single string, through the `Input Dialog` activity.)
 
-The workflow does the following:
+The problem with `Custom Input` is that it renders the webpage you specify in Internet Explorer 7. There's no way to change to another browser. This is a problem because...Internet Explorer 7.
 
-1. Launches Google Chrome using the `Start Process` activity, passing the URL of your input form. (The input form is a local HTML file in the example, but you could use any protocol that Chrome supports.)
-1. Runs `Invoke Code` to start an HTTP listener on http://localhost:5005.
-1. Waits for `POST`ed data.
-1. Returns the `POST`ed data as a string.
+## How the Workaround Works
+This example launches Chrome using `Start Process`, then creates up a `System.Net.HttpListener` that waits for and returns user input.
+
+Broken down further, the workflow's steps are:
+
+1. Launch Google Chrome using the `Start Process` activity, passing the URL of your input form. (The input form is a local HTML file in the example, but you could use any protocol that Chrome supports.)
+1. Run `Invoke Code` to start an HTTP listener on http://localhost:5005.
+1. Wait for `POST`ed data.
+1. Return the `POST`ed data as a string.
 
 The local HTML file contains a simple form that loads Bootstrap. The OK button triggers a function that posts to http://localhost:5005.

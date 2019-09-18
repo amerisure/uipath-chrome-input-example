@@ -31,7 +31,7 @@
 
     <script>
         // Send heartbeat to UiPath
-        setInterval(function() {
+        var heartbeatInterval = setInterval(function() {
             var request = new XMLHttpRequest();
             request.open('GET', 'http://localhost:5005');
             request.send();
@@ -54,6 +54,8 @@
             request.addEventListener('load', function() {
                 window.close();
             });
+
+            clearInterval(heartbeatInterval);
 
             return true;
         }

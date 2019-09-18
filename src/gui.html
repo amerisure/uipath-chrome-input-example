@@ -30,6 +30,13 @@
     </div>
 
     <script>
+        // Send heartbeat to UiPath
+        setInterval(function() {
+            var request = new XMLHttpRequest();
+            request.open('GET', 'http://localhost:5005');
+            request.send();
+        }, 1000);
+
         function submit() {
             // Get form data
             var form = {
@@ -41,10 +48,10 @@
             var json = JSON.stringify(form);
 
             // Post form data to UiPath, then close the browser window
-            var newXHR = new XMLHttpRequest();
-            newXHR.open('POST', 'http://localhost:5005', );
-            newXHR.send(json);
-            newXHR.addEventListener('load', function() {
+            var request = new XMLHttpRequest();
+            request.open('POST', 'http://localhost:5005');
+            request.send(json);
+            request.addEventListener('load', function() {
                 window.close();
             });
 

@@ -10,9 +10,7 @@ This example shows how to prompt for input using Google Chrome instead of Intern
 This is *not* about launching an automation task in Google Chrome. UiPath already has a convenient built-in way to do that using the `Open Browser` activity. This is about showing a form that you need your UiPath workflow to collect user input from.
 
 ## Why Not Use `Custom Input`?
-The `Custom Input` activity is UiPath's out-of-the-box way of prompting for complex user input. (You can prompt for simple input, a single string, through the `Input Dialog` activity.)
-
-The problem with `Custom Input` is that it renders the webpage you specify in Internet Explorer 7. There's no way to change to another browser. This is a problem because...Internet Explorer 7.
+The `Custom Input` activity is UiPath's out-of-the-box way of prompting for complex user input. (You can prompt for simple input, a single string, through the `Input Dialog` activity.) `Custom Input` renders the webpage you specify in Internet Explorer. You might prefer to render your page in another browser.
 
 ## How the Workaround Works
 This example launches Chrome using `Start Process`, then creates up a `System.Net.HttpListener` that waits for and returns user input.
